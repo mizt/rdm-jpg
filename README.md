@@ -4,6 +4,8 @@ Extra JPEG File
 
 <img src="./00259.jpg">
 
+Must be a multiple of 16 in width and height.
+
 | marker | description |
 | ---- | ---- |
 | APP3 | update flag |
@@ -14,9 +16,13 @@ Extra JPEG File
 
 ### update flag
 
+bytes : `((width>>3))*((height>>3))>>3`
+
 	(n)|(n+1)<<1|(n+2)<<2|(n+3)<<3|(n+4)<<4|(n+5)<<5|(n+6)<<6|(n+7)<<7
 
 ### coding mode
+
+bytes : `((width>>3))*((height>>3))>>1`
 
 	(n)|(n+1)<<4
 
@@ -30,15 +36,19 @@ Extra JPEG File
 
 ### x-axis mv / y-axis mv
 
-MV ranges from `-128`~`127` 
+bytes : `((width>>3))*((height>>3))`   
+mv ranges from `-128`~`127` 
 
 ### jpeg compression quality 
 
+bytes : `1`   
 quality ranges from `0`~`100`
 
 ### pixel data
 
 difference YUV pixel value between two frames   
+
+bytes : `width*heigh*3`   
 value ranges from `-255/2`~`255/2  `  
 
 
