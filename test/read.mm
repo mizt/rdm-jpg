@@ -11,6 +11,7 @@ int main(int argc, char *argv[]) {
 			NSLog(@"error : read");
 			return 0;
 		}
+
 		struct jpeg_error_mgr jerr;
 		
 		struct jpeg_decompress_struct dinfo;
@@ -106,7 +107,7 @@ int main(int argc, char *argv[]) {
 			return 0;
 		}
 		
-		if(((unsigned char)APP7)>>7) {
+		if((((unsigned char)APP7)>>7)&1) {
 			NSLog(@"error : APP7");
 		}
 		
